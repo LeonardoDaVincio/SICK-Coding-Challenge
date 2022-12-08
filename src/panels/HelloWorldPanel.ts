@@ -52,7 +52,7 @@ export class HelloWorldPanel {
         // Panel view type
         "showHelloWorld",
         // Panel title
-        "Hello World",
+        "Firmware Compatibility Matcher",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
@@ -134,15 +134,12 @@ export class HelloWorldPanel {
     webview.onDidReceiveMessage(
       (message: any) => {
         const command = message.command;
-        const text = message.text;
 
         switch (command) {
-          case "hello":
-            // Code that should run in response to the hello message command
-            window.showInformationMessage(text);
-            return;
-          // Add more switch case statements here as more webview message commands
-          // are created within the webview context (i.e. inside media/main.js)
+          case "getAllSensors":
+            window.showInformationMessage(command);
+            webview.postMessage({message: "Funktioiert"});
+            return; 
         }
       },
       undefined,
