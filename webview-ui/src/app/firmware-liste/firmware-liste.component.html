@@ -1,0 +1,5 @@
+<div class="list-group">
+    <ng-container *ngFor="let firmware in firmwares">
+        <a [attr.href]="firmware.downloadUrl" class="list-group-item list-group-item-action">{{firmware.version}}</a>
+    </ng-container>
+</div>

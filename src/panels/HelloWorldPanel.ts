@@ -52,7 +52,7 @@ export class HelloWorldPanel {
         // Panel view type
         "showHelloWorld",
         // Panel title
-        "Hello World",
+        "Firmware Compatibility Matcher",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
@@ -97,11 +97,11 @@ export class HelloWorldPanel {
    */
   private _getWebviewContent(webview: Webview, extensionUri: Uri) {
     // The CSS file from the Angular build output
-    const stylesUri = getUri(webview, extensionUri, ["webview-ui", "build", "styles.css"]);
+    const stylesUri = getUri(webview, extensionUri, ["webview-ui", "dist", "styles.css"]);
     // The JS files from the Angular build output
-    const runtimeUri = getUri(webview, extensionUri, ["webview-ui", "build", "runtime.js"]);
-    const polyfillsUri = getUri(webview, extensionUri, ["webview-ui", "build", "polyfills.js"]);
-    const scriptUri = getUri(webview, extensionUri, ["webview-ui", "build", "main.js"]);
+    const runtimeUri = getUri(webview, extensionUri, ["webview-ui", "dist", "runtime.js"]);
+    const polyfillsUri = getUri(webview, extensionUri, ["webview-ui", "dist", "polyfills.js"]);
+    const scriptUri = getUri(webview, extensionUri, ["webview-ui", "dist", "main.js"]);
 
     // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
     return /*html*/ `
@@ -134,15 +134,12 @@ export class HelloWorldPanel {
     webview.onDidReceiveMessage(
       (message: any) => {
         const command = message.command;
-        const text = message.text;
 
         switch (command) {
-          case "hello":
-            // Code that should run in response to the hello message command
-            window.showInformationMessage(text);
-            return;
-          // Add more switch case statements here as more webview message commands
-          // are created within the webview context (i.e. inside media/main.js)
+          case "getAllSensors":
+            window.showInformationMessage(command);
+            webview.postMessage({message: "Funktioiert"});
+            return; 
         }
       },
       undefined,
