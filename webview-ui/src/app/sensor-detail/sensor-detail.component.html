@@ -11,9 +11,11 @@
                 </ul>
             </div>
         </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/150" class="card-img-top">
-        </div>
+        <ng-container *ngIf="imageUri">
+            <div class="card h-100">
+                <img [src]="imageUri" class="card-img-top">
+            </div>
+        </ng-container>
     </div>
     <app-firmware-liste [firmwares]="sensor.compatibleFirmwares" [partNumber]="sensor.partNumber"></app-firmware-liste>
 </div>

@@ -11,12 +11,27 @@ import { SensorService } from '../sensor.service';
 export class SensorDetailComponent {
 
   @Input() sensor?: Sensor;
+  imageUri?: string;
 
   constructor(private sensorService: SensorService) {}
 
   ngOnInit(): void {}
 
   ngOnChanges(): void {
-    console.log(this.sensor?.compatibleFirmwares);
+    if(this.sensor){
+      console.log("Sensor Detail changed, fetching image");
+      this.sensorService.getSensor(this.sensor.id);
+      this.sensorService.getImageForSensor(this.sensor.id);
+    }
+  }
+
+  @HostListener('window:message', ['$event'])
+  onMessage(event: any): void {
+    console.log("Sensor Detail received Message");
+    if (event.data.message === "getImageForSensor") {
+      console.log(event.data);
+      this.imageUri = event.data.imageUri;
+    } 
+    
   }
 }

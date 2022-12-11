@@ -19,3 +19,9 @@ export function getAllSensors(): ISensor[] {
     return sensors;
 }
 
+export function getSensor(id: string): ISensor | undefined {
+    var sensors: ISensor[] = database.devices;
+    var sensor = sensors.find(sn => sn.id === id);
+    return sensor;
+}
+

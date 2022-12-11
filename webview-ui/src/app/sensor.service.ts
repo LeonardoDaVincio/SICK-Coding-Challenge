@@ -38,4 +38,9 @@ export class SensorService {
     console.log("Fetching sensor: ", id);
     this.webviewCommunication.postMessage({command: "getSensor", id: id});
   }
+
+  getImageForSensor(id: string): void {
+    console.log("Fetching image for: ", id);
+    this.webviewCommunication.postMessage({command: "getImageForSensor", id: id});
+  }
 }

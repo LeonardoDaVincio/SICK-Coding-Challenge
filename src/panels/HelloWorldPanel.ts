@@ -1,7 +1,9 @@
 import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
 import { getUri } from "../utilities/getUri";
-import { getAllSensors} from "../utilities/sensorService";
+import { getAllSensors, getSensor} from "../utilities/sensorService";
 import { getCompatibleFirmwares } from "../utilities/firmwareService";
+import * as vscode from "vscode";
+import * as path from 'path';
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -37,7 +39,7 @@ export class HelloWorldPanel {
     this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri);
 
     // Set an event listener to listen for messages passed from the webview context
-    this._setWebviewMessageListener(this._panel.webview);
+    this._setWebviewMessageListener(this._panel.webview, extensionUri);
   }
 
   /**
@@ -63,6 +65,7 @@ export class HelloWorldPanel {
         {
           // Enable JavaScript in the webview
           enableScripts: true,
+          //localResourceRoots: [vscode.Uri.file(path.join(extensionUri.path, "images")), vscode.Uri.file(path.join(extensionUri.path, 'webview-ui'))],
         }
       );
 
@@ -134,20 +137,26 @@ export class HelloWorldPanel {
    * @param webview A reference to the extension webview
    * @param context A reference to the extension context
    */
-  private _setWebviewMessageListener(webview: Webview) {
+  private _setWebviewMessageListener(webview: Webview, extensionUri: Uri) {
     webview.onDidReceiveMessage(
       (message: any) => {
         const command = message.command;
 
         switch (command) {
           case "getAllSensors": {
-            window.showInformationMessage(command);
+            //window.showInformationMessage(command);
             webview.postMessage({message: "getAllSensors", sensors: getAllSensors()});
             return; 
           }
-          /*case "getSensor": {
+          case "getImageForSensor": {
+            //window.showInformationMessage(command);
+            const imageUri = getUri(webview, extensionUri, ["images", message.id + ".png"]);
+            webview.postMessage({message: "getImageForSensor", imageUri: imageUri.toString()});
+            return; 
+          }
+          case "getSensor": {
             const sensorId: string = message.id;
-            window.showInformationMessage(command, sensorId);
+            //window.showInformationMessage(command, sensorId);
 
             const sensor = getSensor(sensorId);
             if (sensor) {
@@ -157,7 +166,7 @@ export class HelloWorldPanel {
               webview.postMessage({message: "error"});
             }
             return;
-          }*/
+          }
         }
       },
       undefined,
