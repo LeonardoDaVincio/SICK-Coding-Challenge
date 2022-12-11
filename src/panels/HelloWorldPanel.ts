@@ -1,9 +1,7 @@
 import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
 import { getUri } from "../utilities/getUri";
-import { getAllSensors, getSensor} from "../utilities/sensorService";
+import { getAllSensors} from "../utilities/sensorService";
 import { getCompatibleFirmwares } from "../utilities/firmwareService";
-import * as vscode from "vscode";
-import * as path from 'path';
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -154,17 +152,12 @@ export class HelloWorldPanel {
             webview.postMessage({message: "getImageForSensor", imageUri: imageUri.toString()});
             return; 
           }
-          case "getSensor": {
-            const sensorId: string = message.id;
+          case "getCompatibleFirmwares": {
+            const sensorPartNumber: number = message.partNumber;
             //window.showInformationMessage(command, sensorId);
 
-            const sensor = getSensor(sensorId);
-            if (sensor) {
-              const firmwares = getCompatibleFirmwares(sensor.partNumber);
-              webview.postMessage({message: "getSensor", sensor: sensor, firmwares: firmwares});
-            } else {
-              webview.postMessage({message: "error"});
-            }
+            const firmwares = getCompatibleFirmwares(sensorPartNumber);
+            webview.postMessage({message: "getCompatibleFirmwares", firmwares: firmwares});
             return;
           }
         }

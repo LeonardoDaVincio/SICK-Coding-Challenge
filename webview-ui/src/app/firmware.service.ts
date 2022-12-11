@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Firmware } from './firmware';
-import { Sensor } from './sensor';
 import { WebviewCommunicationService } from './webview-communication.service';
 
 @Injectable({
