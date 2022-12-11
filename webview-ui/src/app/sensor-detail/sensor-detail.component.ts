@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { Sensor } from '../sensor';
 import { Firmware } from '../firmware';
-import { FirmwareService } from '../firmware.service';
+import { SensorService } from '../sensor.service';
 
 @Component({
   selector: 'app-sensor-detail',
@@ -12,14 +12,11 @@ export class SensorDetailComponent {
 
   @Input() sensor?: Sensor;
 
-  firmwares?: Firmware[];
+  constructor(private sensorService: SensorService) {}
 
-  constructor(private firmwareService: FirmwareService) {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    if(this.sensor) {
-      this.firmwares = this.firmwareService.getCompatibleFirmwares(this.sensor);
-    }
+  ngOnChanges(): void {
+    console.log(this.sensor?.compatibleFirmwares);
   }
-
 }

@@ -8,18 +8,10 @@ import { WebviewCommunicationService } from './webview-communication.service';
 })
 export class FirmwareService {
 
-  constructor() { }
+  constructor(private webviewCommunicationService: WebviewCommunicationService) { }
 
-  getCompatibleFirmwares(sensor: Sensor): Firmware[] {
-    const f1: Firmware = {
-      version: "1.0",
-      downloadUrl: "bla"
-    };
-    const f2: Firmware = {
-      version: "2.0",
-      downloadUrl: "bla"
-    };
-
-    return [f1, f2];
+  getCompatibleFirmwares(partNumber: number): void {
+    console.log("Fetching firmwares for: ", partNumber);
+    this.webviewCommunicationService.postMessage({command: "getCompatibleFirmwares", partNumber: partNumber});
   }
 }

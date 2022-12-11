@@ -5,5 +5,6 @@ export interface Sensor {
     name: string;
     partNumber: number;
     communicationInterface: string;
-    wheight: number;
+    weight: number;
+    compatibleFirmwares: Firmware[];
 }

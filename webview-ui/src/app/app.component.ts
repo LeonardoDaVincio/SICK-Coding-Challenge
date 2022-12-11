@@ -11,10 +11,4 @@ export class AppComponent {
   constructor(){
     
   }
-
-  @HostListener('window:message', ['$event'])
-  onMessage(event: any): void {
-    console.log("message received");
-    console.log(event);
-  }
 }

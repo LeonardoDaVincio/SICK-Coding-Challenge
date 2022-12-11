@@ -7,7 +7,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Part Number: {{sensor.partNumber}}</li>
                     <li class="list-group-item">Communication Interface: {{sensor.communicationInterface}}</li>
-                    <li class="list-group-item">Gewicht: {{sensor.wheight}}g</li>
+                    <li class="list-group-item">Gewicht: {{sensor.weight}}g</li>
                 </ul>
             </div>
         </div>
@@ -15,5 +15,5 @@
             <img src="https://via.placeholder.com/150" class="card-img-top">
         </div>
     </div>
-
+    <app-firmware-liste [firmwares]="sensor.compatibleFirmwares" [partNumber]="sensor.partNumber"></app-firmware-liste>
 </div>

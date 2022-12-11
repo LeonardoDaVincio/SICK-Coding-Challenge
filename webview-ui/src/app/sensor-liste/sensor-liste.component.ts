@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { Firmware } from '../firmware';
 import { Sensor } from '../sensor';
 import { SensorService } from '../sensor.service';
 
@@ -15,11 +16,22 @@ export class SensorListeComponent {
   constructor(private sensorService: SensorService) {}
 
   ngOnInit(): void {
-    this.sensors = this.sensorService.getSensorsV2();
+    this.sensorService.getSensorsV2();
   }
 
   onSelect(sensor: Sensor): void {
     this.selectedSensor = sensor;
   } 
+
+  @HostListener('window:message', ['$event'])
+  onMessage(event: any): void {
+    console.log("Sensor Liste received Message");
+    if (event.data.message === "getAllSensors") {
+      console.log("Sensor Liste received all sensors");
+      console.log(event.data.sensors);
+      this.sensors = event.data.sensors;
+    } 
+    
+  }
 
 }

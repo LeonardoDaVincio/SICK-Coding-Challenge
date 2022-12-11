@@ -1,5 +1,9 @@
-<div class="list-group">
-    <ng-container *ngFor="let firmware in firmwares">
+<h2>Compatible Firmwares for {{partNumber}}</h2>
+<ul *ngIf="firmwares && firmwares.length > 0" class="list-group">
+    <li *ngFor="let firmware of firmwares">
         <a [attr.href]="firmware.downloadUrl" class="list-group-item list-group-item-action">{{firmware.version}}</a>
-    </ng-container>
+    </li>
+</ul>
+<div *ngIf="!firmwares || firmwares.length == 0">
+    <h3>Keine Firmwares vorhanden</h3>
 </div>

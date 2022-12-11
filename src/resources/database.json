@@ -1,0 +1,131 @@
+{
+  "devices": [
+    {
+      "id": "nanoScan3",
+      "name": "nanoScan3",
+      "partNumber": 11100334,
+      "communicationInterface": "USB",
+      "weight": 729
+    },
+    {
+      "id": "SIM1004",
+      "name": "SensorIntegrationMachine ETH4",
+      "partNumber": 21098146,
+      "communicationInterface": "Ethernet",
+      "weight": 99
+    },
+    {
+      "id": "SIM1012",
+      "name": "SensorIntegrationMachine ETH12",
+      "partNumber": 31098148,
+      "communicationInterface": "Ethernet",
+      "weight": 1327
+    }
+  ],
+  "firmware": [
+    {
+      "version": "1.8.1",
+      "downloadUrl": "https://example.com/firmware/base/1.8.1",
+      "compatiblePartNumbers": [
+        11100334,
+        21098146,
+        31098148
+      ]
+    },
+    {
+      "version": "1.8.1",
+      "downloadUrl": "https://example.com/firmware/NS3/1.8.1",
+      "compatiblePartNumbers": [
+        11100334
+      ]
+    },
+    {
+      "version": "2.0.0-alpha.1",
+      "downloadUrl": "https://example.com/firmware/NS3/2.0.0-alpha.1",
+      "compatiblePartNumbers": [
+        11100334
+      ]
+    },
+    {
+      "version": "2.0.0-alpha.5",
+      "downloadUrl": "https://example.com/firmware/NS3/2.0.0-alpha.5",
+      "compatiblePartNumbers": [
+        11100334
+      ]
+    },
+    {
+      "version": "6.0.0",
+      "downloadUrl": "https://example.com/firmwares/SIM1004/6.0.0",
+      "compatiblePartNumbers": [
+        21098146
+      ]
+    },
+    {
+      "version": "5.9.0",
+      "downloadUrl": "https://example.com/firmwares/SIM1004/5.9.0",
+      "compatiblePartNumbers": [
+        21098146
+      ]
+    },
+    {
+      "version": "5.7.1",
+      "downloadUrl": "https://example.com/firmwares/SIM1004/5.7.1",
+      "compatiblePartNumbers": [
+        21098146
+      ]
+    },
+    {
+      "version": "5.7.0",
+      "downloadUrl": "https://example.com/firmwares/SIM1004/5.7.0",
+      "compatiblePartNumbers": [
+        21098146
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "downloadUrl": "https://example.com/firmwares/SIM1012/2.0.0",
+      "compatiblePartNumbers": [
+        31098148
+      ]
+    },
+    {
+      "version": "1.4.6",
+      "downloadUrl": "https://example.com/firmwares/SIM1012/1.4.6",
+      "compatiblePartNumbers": [
+        31098148
+      ]
+    },
+    {
+      "version": "4.0.0",
+      "downloadUrl": "https://example.com/firmwares/SIMxx/4.0.0",
+      "compatiblePartNumbers": [
+        21098146,
+        31098148
+      ]
+    },
+    {
+      "version": "3.9.0",
+      "downloadUrl": "https://example.com/firmwares/SIMxx/3.9.0",
+      "compatiblePartNumbers": [
+        21098146,
+        31098148
+      ]
+    },
+    {
+      "version": "3.7.1",
+      "downloadUrl": "https://example.com/firmwares/SIMxx/3.7.1",
+      "compatiblePartNumbers": [
+        21098146,
+        31098148
+      ]
+    },
+    {
+      "version": "3.7.0",
+      "downloadUrl": "https://example.com/firmwares/SIMxx/3.7.0",
+      "compatiblePartNumbers": [
+        21098146,
+        31098148
+      ]
+    }
+  ]
+}

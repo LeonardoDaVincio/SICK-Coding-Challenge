@@ -1,5 +1,7 @@
 import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
 import { getUri } from "../utilities/getUri";
+import { getAllSensors} from "../utilities/sensorService";
+import { getCompatibleFirmwares } from "../utilities/firmwareService";
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -28,6 +30,8 @@ export class HelloWorldPanel {
     // Set an event listener to listen for when the panel is disposed (i.e. when the user closes
     // the panel or when the panel is closed programmatically)
     this._panel.onDidDispose(this.dispose, null, this._disposables);
+
+    
 
     // Set the HTML content for the webview panel
     this._panel.webview.html = this._getWebviewContent(this._panel.webview, extensionUri);
@@ -136,10 +140,24 @@ export class HelloWorldPanel {
         const command = message.command;
 
         switch (command) {
-          case "getAllSensors":
+          case "getAllSensors": {
             window.showInformationMessage(command);
-            webview.postMessage({message: "Funktioiert"});
+            webview.postMessage({message: "getAllSensors", sensors: getAllSensors()});
             return; 
+          }
+          /*case "getSensor": {
+            const sensorId: string = message.id;
+            window.showInformationMessage(command, sensorId);
+
+            const sensor = getSensor(sensorId);
+            if (sensor) {
+              const firmwares = getCompatibleFirmwares(sensor.partNumber);
+              webview.postMessage({message: "getSensor", sensor: sensor, firmwares: firmwares});
+            } else {
+              webview.postMessage({message: "error"});
+            }
+            return;
+          }*/
         }
       },
       undefined,
